@@ -67,7 +67,7 @@ namespace CouchbaseModelViews.Framework
 				//Do nothing on 404
 			}
 
-			if (Regex.Replace(doc, @"\s", "") == Regex.Replace(designDoc, @"\s", "")) return;
+			if (!string.IsNullOrEmpty(doc)  && (Regex.Replace(doc, @"\s", "") == Regex.Replace(designDoc, @"\s", ""))) return;
 
 			if (!string.IsNullOrEmpty(doc))
 			{
