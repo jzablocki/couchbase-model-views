@@ -108,7 +108,7 @@ namespace CouchbaseModelViews.Framework
 			{
 				foreach (T attr in prop.GetCustomAttributes(typeof(T), true))
 				{
-					var propName = string.IsNullOrEmpty(attr.PropertyName) ? prop.Name : attr.PropertyName;
+					var propName = string.IsNullOrEmpty(attr.PropertyName) ? prop.Name.ToLower() : attr.PropertyName;
 					orderedViewNames.Add(Tuple.Create(propName, attr));
 
 					//TODO: refactor the copy & paste

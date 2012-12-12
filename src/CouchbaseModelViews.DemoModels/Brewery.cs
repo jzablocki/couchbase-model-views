@@ -34,7 +34,7 @@ namespace CouchbaseModelViews.DemoModels
 		[CouchbaseCollatedViewKey("all_with_beers", "beer", "name", "brewery_id")]
 		public string Id { get; set; }
 		
-		[CouchbaseViewKey("by_name", "name")]
+		[CouchbaseViewKey("by_name")]
 		public string Name { get; set; }
 
 		[CouchbaseViewKeySum("sum_by_state", "state")]
