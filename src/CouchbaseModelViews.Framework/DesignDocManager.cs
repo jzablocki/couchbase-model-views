@@ -27,6 +27,7 @@ using Couchbase.Management;
 using Couchbase.Configuration;
 using System.Configuration;
 using System.Net;
+using System.Text.RegularExpressions;
 
 namespace CouchbaseModelViews.Framework
 {
@@ -58,14 +59,16 @@ namespace CouchbaseModelViews.Framework
 
 			try
 			{
-				_cluster.RetrieveDesignDocument(_config.Servers.Bucket, designDocName);
+				doc = _cluster.RetrieveDesignDocument(_config.Servers.Bucket, designDocName);
 			}
 			catch (WebException ex)
 			{
 				if (!ex.Message.Contains("404")) throw ex;
 				//Do nothing on 404
 			}
-			
+
+			if (Regex.Replace(doc, @"\s", "") == Regex.Replace(designDoc, @"\s", "")) return;
+
 			if (!string.IsNullOrEmpty(doc))
 			{
 				_cluster.DeleteDesignDocument(_config.Servers.Bucket, designDocName);
